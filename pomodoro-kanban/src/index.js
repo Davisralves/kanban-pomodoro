@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Css/index.css';
+import './Css/Pomodoro.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

@@ -3,7 +3,7 @@ import Timer from "./Timer";
 
 export default function PomodoroTimer() {
   return(
-    <main>
+    <main className='flex-main'>
       <h1>Pomodoro Timer</h1>
       <Timer />
     </main>
