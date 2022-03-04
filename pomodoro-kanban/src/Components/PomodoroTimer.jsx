@@ -1,6 +1,5 @@
 import React from "react";
-import Timer from "./Timer";
-
+import Timer from './Timer.tsx'
 export default function PomodoroTimer() {
   return(
     <main className='flex-main'>

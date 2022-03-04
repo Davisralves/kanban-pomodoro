@@ -6,7 +6,7 @@ export default function Timer() {
 	const [button, setButton] = useState(false);
 
 	const timer = () => {
-		let interval = null;
+		let interval: NodeJS.Timer = null;
 		const oneSecond = 1000;
 		if (button) {
 			interval = setInterval(
