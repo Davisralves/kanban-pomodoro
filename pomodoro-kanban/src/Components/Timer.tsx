@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
-const seconds: string[] = [];
+const secondsArray: string[] = [];
 for(let index = 59; index >= 0; index -= 1) {
   if(index >= 10) {
-    seconds.unshift(index.toString());
-  } else seconds.unshift('0' + index.toString())
+    secondsArray.unshift(index.toString());
+  } else secondsArray.unshift('0' + index.toString())
 }
 const defaultMinutes = 25;
-const minutes = seconds.filter((number) => defaultMinutes >= parseInt(number));
-console.log(minutes, seconds);
+const minutesArray = secondsArray.filter((number) => defaultMinutes >= parseInt(number));
+console.log(minutesArray, secondsArray);
 
 
 export default function Timer() {
 	const [seconds, setSeconds] = useState(0);
-	const [minutes, setMinutes] = useState(0);
+	const [minutes, setMinutes] = useState(25);
 	const [button, setButton] = useState(false);
 
   const endTimer = (): number => {
@@ -35,12 +35,12 @@ export default function Timer() {
 						else {
               setMinutes((minutes) => {
                 if(minutes > 0) {
-                  return minutes -1
+                  return minutes - 1
                 } else {
                   return endTimer();
                 };
               })
-              return 60;
+              return 59;
             };
 					}),
 				oneSecond
@@ -50,11 +50,10 @@ export default function Timer() {
 	};
 
 	useEffect(timer, [button]);
-
 	return (
 		<section id="TimerSection">
 			<div className="flexbox">
-				<h1 data-testid="Timer">{`${minutes}:${seconds}`}</h1>
+				<h1 data-testid="Timer">{`${minutes}:${secondsArray[seconds]}`}</h1>
 			</div>
 			<Button
 				id="Start"
