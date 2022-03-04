@@ -9,17 +9,15 @@ for(let index = 59; index >= 0; index -= 1) {
 }
 const defaultMinutes = 25;
 const minutesArray = secondsArray.filter((number) => defaultMinutes >= parseInt(number));
-console.log(minutesArray, secondsArray);
 
 
 export default function Timer() {
-	const [seconds, setSeconds] = useState(0);
-	const [minutes, setMinutes] = useState(25);
+	const [time, setTime] = useState({minutes: 0, seconds: 10});
 	const [button, setButton] = useState(false);
 
-  const endTimer = (): number => {
+  const endTimer = () => {
     setButton(false);
-    return 0;
+    return {minutes: 0, seconds: 0};
   }
 
 	const timer = () => {
@@ -27,22 +25,18 @@ export default function Timer() {
 		const oneSecond = 1000;
 		if (button) {
 			interval = setInterval(
-				() =>
-					setSeconds((seconds) => {
-						if (seconds > 0) {
-							return seconds - 1;
-						}
-						else {
-              setMinutes((minutes) => {
-                if(minutes > 0) {
-                  return minutes - 1
-                } else {
-                  return endTimer();
-                };
-              })
-              return 59;
-            };
-					}),
+				() => {
+					setTime(({minutes, seconds}) => {
+            console.log(minutes, seconds);
+            if(seconds > 0) {
+              return {minutes, seconds: seconds - 1}
+            } else {
+              if(minutes > 0) return {minutes: minutes - 1, seconds: 59}
+              else return endTimer();
+            }
+          })
+  
+        },
 				oneSecond
 			);
 		}
@@ -53,7 +47,7 @@ export default function Timer() {
 	return (
 		<section id="TimerSection">
 			<div className="flexbox">
-				<h1 data-testid="Timer">{`${minutes}:${secondsArray[seconds]}`}</h1>
+				<h1 data-testid="Timer">{`${minutesArray[time.minutes]}:${secondsArray[time.seconds]}`}</h1>
 			</div>
 			<Button
 				id="Start"
