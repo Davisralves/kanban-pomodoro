@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import PomodoroTimer from "./Components/PomodoroTimer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
